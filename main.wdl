@@ -171,7 +171,8 @@ workflow amplicon16S {
             table = qiime_filter.filtered_table,
             ncpus = ncpus,
             qiime2_docker_image = qiime2_docker_image,
-            memory_usage = memory_usage
+            memory_usage = memory_usage,
+            sampling_depth = qiime2_tabulate_min_max.min_val
     }
     call qiime2.qiime2_ancombc{
         input:
@@ -200,6 +201,10 @@ workflow amplicon16S {
     }
     call report.quarto_render{
         input:
+            report_assets = report_assets, 
+            ncpus = ncpus,
+            memory_usage = memory_usage,
+            report_docker_image = report_docker_image,
             qiime2_pcoa = qiime2_diversity_core.unweighted_unifrac_pcoa_results,
             qiime2_faith_pd_vector = qiime2_diversity_core.faith_pd_vector,
             qiime2_evenness_vector = qiime2_diversity_core.evenness_vector,
