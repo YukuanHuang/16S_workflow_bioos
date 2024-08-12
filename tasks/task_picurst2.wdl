@@ -20,7 +20,7 @@ task pircust2_pipeline {
     }
 
     command <<<
-        picrust2_pipeline.py -s {study_seqs_fna} -i {study_seqs_biom} -o picrust2_out_pipeline -p ~{ncpus} \
+        picrust2_pipeline.py -s ~{study_seqs_fna} -i ~{study_seqs_biom} -o picrust2_out_pipeline -p ~{ncpus} \
             ~{"--max_nsti " + max_nsti } \
             ~{"--min_reads " + min_reads } \
             ~{"--min_samples " + min_samples } \
